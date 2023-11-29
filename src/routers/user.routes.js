@@ -1,16 +1,22 @@
-//-> [1]: Imporo el servidor
-const express = require('express');
+const express = require("express");
+const {register,login, getUsers, getUser, updateUser, deleteUser } = require("../controllers/user.controllers");
+const {isAuth, isAdmin} = require("../../middlewares/auth");
+const userRoutes = express.Router();
 
-//-> [2]: Instancio
-const router = express.Router();
+// register, login, postUser, updateUser, deleteUser
 
-//Importar las funciones controladores
-const {
-  getUsers
-} = require('../controllers/user.controllers');
 
-//-Asociar las funciones a los endpoints
-router.get('/allusers', getUsers);
+userRoutes.post("/register", register);
+userRoutes.post("/login", login);
+userRoutes.get("/getAllUsers", getUsers);
 
-//-> [5]: Exporto el enrutador.
-module.exports = router;
+userRoutes.get("/getUser/:id", getUser);
+
+userRoutes.put("/update/:id", updateUser);
+
+userRoutes.delete("/delete/:id", deleteUser);
+
+
+
+
+module.exports= userRoutes;

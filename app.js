@@ -10,7 +10,7 @@ const { connect } = require('./src/bd');
 const routerUser = require('./src/routers/user.routes');
 
 
-const PORT = 5001;
+const PORT = 5000;
 const app = express();
 
 connect();
