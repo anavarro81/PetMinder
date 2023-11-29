@@ -1,12 +1,12 @@
-const User = require("../models/user.models");
+const User = require("../models/user.model");
 
 const bcrypt = require("bcrypt");
 const {
   validateEmail,
   validatePassword,
   usedEmail,
-} = require("../../utils/validators");
-const { generateSign } = require("../../utils/jwt");
+} = require("../utils/validators");
+const { generateSign } = require("../utils/jwt");
 
 
 const register = async (req, res) => {
@@ -23,13 +23,9 @@ const register = async (req, res) => {
     }
     if (await usedEmail(newUser.email)) {
       return res.status(400).json({ message: " email introducido ya existe" });
-    }
+    }    
 
-    console.log('Nuevo usuario... ')
-
-    newUser.password = bcrypt.hashSync(newUser.password, 10);
-
-    console.log('newUser.password = ', newUser.password)
+    newUser.password = bcrypt.hashSync(newUser.password, 10);    
 
     const createdUser = await newUser.save();
 
@@ -42,26 +38,25 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
   
-    const userInfo = await User.findOne({ email: req.body.email })
-
-    console.log(userInfo);
+    const userInfo = await User.findOne({ email: req.body.email })    
 
     if (!userInfo) {
       return res.status(404).json({ message: "email no encontrado" });
-    }
+    }      
+    
+
 
     if (!bcrypt.compareSync(req.body.password, userInfo.password)) {
       return res.status(404).json({ message: "password incorrecto" });
-    }
-
+    }  
     
-
-    const token = generateSign(userInfo._id, userInfo.email);
+    const token = generateSign(userInfo._id, userInfo.email);   
 
      userInfo.password = undefined
 
     return res.status(200).json({ user: userInfo, token: token, role: userInfo.role, id: userInfo._id});
   } catch (error) {
+    console.log('Error en el login ',  error);
     return res.status(500).json(error);
   }
 };
