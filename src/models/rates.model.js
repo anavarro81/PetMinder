@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const maxDate = new Date('9999-12-31T23:59:59.999Z');
 
 const ratesSchema = new Schema(
     {
@@ -14,9 +15,7 @@ const ratesSchema = new Schema(
     },
     endDate: {
         type: Date,
-        default: function () {
-        return new Date(9999, 11, 31); 
-        },
+        default: maxDate
     }
     
     },   

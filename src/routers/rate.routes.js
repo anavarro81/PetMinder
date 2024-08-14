@@ -1,17 +1,9 @@
 const express = require("express");
-const {newRate} = require("../controllers/user.controllers");
-
+const {newRate, getActiveRates} = require("../controllers/rate.controllers");
 const rateRoutes = express.Router();
 
-// register, login, postUser, updateUser, deleteUser
 
+rateRoutes.put("/new-rate", newRate)
+rateRoutes.get("/active", getActiveRates)
 
-
-userRoutes.put("/newRate", newRate);
-
-
-
-
-
-
-module.exports= {rateRoutes};
+module.exports= rateRoutes;
