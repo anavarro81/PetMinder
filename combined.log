@@ -1,0 +1,1 @@
+{"level":"error","message":"error Error al crear la tarifa: ValidationError: price: Path `price` is required., rate: Path `rate` is required.","service":"rate.controller.js","timestamp":"2024-08-16T11:54:06.189Z"}
