@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const maxDate = new Date('9999-12-31T23:59:59.999Z');
 

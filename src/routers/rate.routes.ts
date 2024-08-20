@@ -1,4 +1,4 @@
-const express = require("express");
+import express from 'express';
 const {newRate, getActiveRates, updateRates} = require("../controllers/rate.controllers");
 const rateRoutes = express.Router();
 

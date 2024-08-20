@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+import express, { Request, Response } from 'express';
 
 const bcrypt = require("bcrypt");
 const {
@@ -9,9 +10,8 @@ const {
 const { generateSign } = require("../utils/jwt");
 
 
-const register = async (req, res) => {
-  
-  
+
+async function register(req: Request, res:Response): Promise<Response> { 
   
   try {
     const newUser = new User(req.body);
@@ -35,16 +35,15 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
-  try {
-  
+
+async function login(req: Request, res: Response): Promise<Response> {  
+
+  try {  
     const userInfo = await User.findOne({ email: req.body.email })    
 
     if (!userInfo) {
       return res.status(404).json({ message: "email no encontrado" });
-    }      
-    
-
+    }         
 
     if (!bcrypt.compareSync(req.body.password, userInfo.password)) {
       return res.status(404).json({ message: "password incorrecto" });
@@ -62,7 +61,8 @@ const login = async (req, res) => {
 };
 
 // Obtiene todos los usuarios
-const getUsers = async (req, res) => {
+// const getUsers = async (req, res) => {
+async function getUsers(req:Request, res: Response): Promise<Response> { 
   try {
     const allUser = await User.find()
     return res.status(200).json(allUser);
@@ -71,9 +71,9 @@ const getUsers = async (req, res) => {
   }
 };
 
-  const getUser = async (req, res) => {
-    try {
-      
+  // const getUser = async (req, res) => {
+  async function getUser(req: Request, res: Response): Promise<Response> {     
+    try {      
       const { id } = req.params;
       const selectedUser = await User.findById(id)
 
@@ -83,14 +83,14 @@ const getUsers = async (req, res) => {
       
       return res.status(200).json(selectedUser)          
 
-
     } catch (error) {
-      
+      return res.status(500).json({error: `Se ha producido un error al obtener el usuario: ${error}`})
     }
   }
   
   // Actualia nombre y correo del usuario. 
-  const updateUser = async (req, res) => {
+  
+    async function updateUser(req: Request, res:Response): Promise<Response>  {
 
     
 
@@ -117,7 +117,9 @@ const getUsers = async (req, res) => {
 
 
   // Borra usuario.
-  const deleteUser = async (req, res) => {
+  // const deleteUser = async (req, res) => {
+
+async function deleteUser(req: Request, res:Response): Promise<Response>  { 
     try {
       const {id} = req.params;
       const deletedUser = await User.findByIdAndDelete(id)
