@@ -6,17 +6,14 @@ const ratesSchema = new Schema(
     {
       rate: { type: String, 
             required: true, 
-            enum: ['Paseo laborable', 'Paseo festivo', 'Alojamiento laborable', 'Alojamiento festivo'] 
+            enum: ['Paseo laborable', 'Paseo festivo', 'Alojamiento laborable', 'Alojamiento festivo'],
+            unique: true
         },
       price: { 
         type: Number, 
         required: true,
         min: 1 
     },
-    endDate: {
-        type: Date,
-        default: maxDate
-    }
     
     },   
     {

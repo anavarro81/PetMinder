@@ -1,7 +1,15 @@
 # DOG TRACKER API project
 
-Documentacion endPonts
+Rates Model
 
+| Name    | Type    | Required | Validations                      |
+|---------|-------- |----------|----------------------------------|
+| rate    | String  | Yes      | enum: 'Paseo laborable',         |
+|         |         |          |      'Paseo festivo',            |
+|         |         |          |      'Alojamiento laborable',    |
+|         |         |          |      'Alojamiento festivo'       |   
+| price   | Numbrer | Yes      | min: 1                           |   
+| endDate | Date    | Yes      | default: maxDate                 |
 
 
 

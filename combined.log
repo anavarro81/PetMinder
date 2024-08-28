@@ -1,1 +1,4 @@
 {"level":"error","message":"error Error al crear la tarifa: ValidationError: price: Path `price` is required., rate: Path `rate` is required.","service":"rate.controller.js","timestamp":"2024-08-16T11:54:06.189Z"}
+{"level":"error","message":"error Error al crear la tarifa: ValidationError: rate: `Alojamiento en festividad` is not a valid enum value for path `rate`.","service":"rate.controller.js","timestamp":"2024-08-20T15:31:24.237Z"}
+{"level":"error","message":"error Error al crear la tarifa: ValidationError: rate: `Alojamiento en festividad` is not a valid enum value for path `rate`.","service":"rate.controller.js","timestamp":"2024-08-20T15:32:31.003Z"}
+{"level":"error","message":"error Error al crear la tarifa: ValidationError: rate: `Paseo Festivo` is not a valid enum value for path `rate`.","service":"rate.controller.js","timestamp":"2024-08-28T15:24:29.835Z"}
