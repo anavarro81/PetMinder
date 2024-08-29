@@ -1,6 +1,6 @@
 # DOG TRACKER API project
 
-Rates Model
+## Rates Model
 
 | Name    | Type    | Required | Validations                      |
 |---------|-------- |----------|----------------------------------|
@@ -77,5 +77,25 @@ RESPONSE
     "message": "Tarifa(s) actualizadas correctamente"
 }
 ```
+
+
+## Sits Model
+
+| Name           | Type     | Required | Description                                   |
+|---------       |--------  |----------|-----------------------------------------------|
+| serviceDate    | Date     | Yes      | Fecha en que se realiza el servicio           |
+| service        | String   | Yes      | Nombre del servicio: 'Paseo' o 'Alojamiento'  |  
+| rateType       | String   | Yes      | Tarifa del servicio: 'Laborable' o 'Festivo'  |
+| petName        | String   | Yes      | Nombre de la mascota                          |
+| provided       | Boolean  | Yes      | Indica si el servicio se realizó o no         |
+| finalPrice     | Number   | Yes      | Indica lo cobrado por el servicio             | 
+|--------------------------------------------------------------------------------------|
+
+
+
+
+
+
+
 
 
