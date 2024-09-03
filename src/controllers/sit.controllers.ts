@@ -22,4 +22,31 @@ async function newSit(req: Request, res:Response): Promise<Response>  {
   }
 
 
-  module.exports = {newSit}
+ // Borrado de servicio
+ async function deleteSit(req: Request, res:Response): Promise<Response> {
+
+  try {
+    
+    const {id} = req.params;
+    const deletedSit = await Sit.findByIdAndDelete(id)
+
+    if(!deletedSit) {
+      return res.status(404).json({message: `El id: ${id} no existe en la base de datos`})
+    }
+    
+    return res.status(200).json(deleteSit)
+
+  } catch(error) {
+    logger.error(`Error al borrar el servicio: ${error}`);
+    return res.status(500).json({error: `Se ha producido un error al borrar el servicio: ${error}`})
+
+  }
+  
+  
+ }
+
+ //
+
+
+
+  module.exports = {newSit, deleteSit}
