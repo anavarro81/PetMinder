@@ -40,13 +40,51 @@ async function newSit(req: Request, res:Response): Promise<Response>  {
     logger.error(`Error al borrar el servicio: ${error}`);
     return res.status(500).json({error: `Se ha producido un error al borrar el servicio: ${error}`})
 
-  }
-  
+  }  
   
  }
 
- //
+ // Update 
+ async function updateSit(req: Request, res:Response): Promise<Response> {
+ 
+  try {
+
+    const {id} = req.params;
+
+    const {startDate, endDate, service, rateType, petName, provided, finalPrice} = req.body
+
+    const updatedSit = await Sit.findByIdAndUpdate (id, 
+      {
+        $set: {
+          startDate,
+          endDate,
+          service,
+          rateType,
+          petName,
+          provided,
+          finalPrice        
+        },        
+      },
+      {new: true}
+    )
+
+    if (!updatedSit) {      
+      return res.status(403).json({message: `No existe el servicio con id: ${id}`})
+    }
+
+    return res.status(200).json(updatedSit)
+    
+  } catch (error) {
+    logger.error(`Error al crear el servicio: ${error}`);
+    return res.status(500).json({error: `Error al actualizar la idea: ${error}`})
+  }
+
+}
 
 
 
-  module.exports = {newSit, deleteSit}
+
+
+
+
+  module.exports = {newSit, deleteSit, updateSit}

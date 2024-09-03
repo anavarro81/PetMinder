@@ -1,9 +1,10 @@
 import express from 'express';
-const {newSit, deleteSit} = require("../controllers/sit.controllers")
+const {newSit, deleteSit, updateSit} = require("../controllers/sit.controllers")
 const sitRoutes = express.Router();
 
 
-sitRoutes.put("/new-sit", newSit)
+sitRoutes.post("/new-sit", newSit)
 sitRoutes.delete("/:id", deleteSit)
+sitRoutes.put("/:id", updateSit)
 
-module.exports= sitRoutes;
+module.exports=sitRoutes;
