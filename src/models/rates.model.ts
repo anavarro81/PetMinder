@@ -6,7 +6,7 @@ const ratesSchema = new Schema(
     {
       rate: { type: String, 
             required: true, 
-            enum: ['Paseo laborable', 'Paseo festivo', 'Alojamiento laborable', 'Alojamiento festivo'],
+            enum: ['paseo laborable', 'paseo festivo', 'alojamiento laborable', 'alojamiento festivo'],
             unique: true
         },
       price: { 

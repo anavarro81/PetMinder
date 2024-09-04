@@ -17,13 +17,13 @@ const sitsSchema = new Schema(
         service: { 
             type: String, 
             required: true,
-            enum: ['Paseo', 'Alojamiento'] 
+            enum: ['paseo', 'alojamiento'] 
         },
 
         rateType: {
             type: String,
             required: true,
-            enum: ['Festivo', 'Laborable']
+            enum: ['festivo', 'laborable']
         },
 
         petName: {
