@@ -1,4 +1,9 @@
 const Rate = require ('../models/rates.model')
+
+//  const Rate = require ('@models/rates.model')
+
+
+
 const maxDate = new Date('9999-12-31T23:59:59.999Z');
 const buildLogger = require('../plugins/logger.plugin')
 import { Request, Response } from 'express';

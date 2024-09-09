@@ -9,3 +9,5 @@
 {"level":"error","message":"error Error al crear el servicio: ValidationError: service: `paseos` is not a valid enum value for path `service`.","service":"rate.controller.js","timestamp":"2024-09-04T13:53:11.979Z"}
 {"level":"error","message":"error Error al crear el servicio: ValidationError: service: `paseos` is not a valid enum value for path `service`.","service":"rate.controller.js","timestamp":"2024-09-04T13:53:50.241Z"}
 {"level":"error","message":"error Error al crear el servicio: ValidationError: service: `paseos` is not a valid enum value for path `service`.","service":"rate.controller.js","timestamp":"2024-09-04T14:00:05.359Z"}
+{"level":"error","message":"error Error al crear el servicio: ValidationError: startDate: Path `startDate` is required.","service":"rate.controller.js","timestamp":"2024-09-05T16:11:02.265Z"}
+{"level":"error","message":"error Error al crear el servicio: ValidationError: startDate: Path `startDate` is required.","service":"rate.controller.js","timestamp":"2024-09-05T16:12:48.157Z"}

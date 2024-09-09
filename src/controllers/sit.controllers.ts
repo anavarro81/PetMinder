@@ -1,30 +1,32 @@
 const Sit = require ('../models/sits.model')
 const buildLogger = require('../plugins/logger.plugin')
 import { Request, Response } from 'express';
-import {calculateRate} from '../utils/rateCalculator'
+import {calculateRate, calculateRateTable} from '../utils/rateCalculator'
 
 const logger = buildLogger('rate.controller.js')
 
-async function newSit(req: Request, res:Response): Promise<Response>  {
-  
-
-  console.log('Estoy en newSit');
-  
-
-   const {serviceDate, service, rateType, petName, provided, finalPrice} = req.body   
-
-
-  const price = await calculateRate (service, rateType)
-
-  if (price <= 0) {
-    return res.status(404).json({message: `No existe la tarifa: ${service} ${rateType}`});
-  }
-
-  console.log('La tarifa recuperada es: ', price);
+async function newSit(req: Request, res:Response): Promise<Response>  { 
 
   
-  // Asignamos la tarifa recuperado de la coleccion de tarifas. 
-  req.body.finalPrice = price
+
+   const {petName, service, rateType, startDate, endDate, starHour, endHour} = req.body   
+
+   if (service === 'paseo') {
+    const price = await calculateRate (service, rateType)
+    
+    if (price <= 0) {
+      return res.status(404).json({message: `No existe la tarifa: ${service} ${rateType}`});
+    } else {
+      
+      req.body.finalPrice = price
+    }
+   
+  } else {
+    // const rateTable = await calculateRate (service, rateType, startDate, endDate)  
+    const rateTable = calculateRateTable(startDate, endDate)
+    return res.status(500).json({message: `Calcular Tarifa para Alojamiento`});
+   }
+  
   
 
   try {
