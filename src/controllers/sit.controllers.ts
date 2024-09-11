@@ -21,7 +21,9 @@ interface SitData {
 
 
 
-catchAsync(async function newWalk(req: Request, res:Response): Promise<Response> {
+// catchAsync(async function newWalk(req: Request, res:Response): Promise<Response> {
+
+async function newWalk(req: Request, res:Response): Promise<Response> {
 
   const {petName, service, rateType, startDate, endDate, starHour, endHour} = req.body
   
@@ -84,7 +86,8 @@ catchAsync(async function newWalk(req: Request, res:Response): Promise<Response>
 
 
 
-})
+}
+// )
 
 async function newBoarding(req: Request, res:Response) {
   

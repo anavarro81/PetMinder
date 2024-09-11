@@ -35,7 +35,7 @@ app.all('*', (req: Request, res: Response, next:NextFunction )=> {
      res.status(404).json({'status ': 'No encontrado'})
 }) 
 
-app.use(globalErrorHandler)
+// app.use(globalErrorHandler)
 
 const PORT = process.env.PORT || 5000; 
 
