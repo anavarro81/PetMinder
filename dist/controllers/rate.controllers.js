@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Rate = require('../models/rates.model');
+//  const Rate = require ('@models/rates.model')
 const maxDate = new Date('9999-12-31T23:59:59.999Z');
 const buildLogger = require('../plugins/logger.plugin');
 const logger = buildLogger('rate.controller.js');

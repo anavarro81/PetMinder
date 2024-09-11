@@ -8,7 +8,8 @@
     "dev": "nodemon",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/index.ts",
-    "debug": "ndb index.js"
+    "debug": "ndb index.js",
+    "start:prod": "cross-env NODE_ENV=production npm run build && node dist/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^22.4.1",
+    "cross-env": "^7.0.3",
     "ndb": "^1.1.5",
     "nodemon": "^3.1.4",
     "rimraf": "^6.0.1",

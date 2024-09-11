@@ -6,11 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const sitsSchema = new Schema({
-    startDate: { type: Date,
-        required: true,
+    startDate: { type: Date
     },
-    endDate: { type: Date,
-        required: true,
+    endDate: { type: Date
+    },
+    serviceDate: {
+        type: Date
     },
     service: {
         type: String,

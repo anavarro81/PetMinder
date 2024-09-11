@@ -1,8 +1,9 @@
-const Sit = require ('../models/sits.model')
+const Sit = require ('@models/sits.model')
 const buildLogger = require('../plugins/logger.plugin')
 import { Request, Response } from 'express';
 import {calculateRate, calculateRateTable} from '../utils/rateCalculator'
 import { log } from 'console';
+const catchAsync = require ('../utils/catchAsync')
 
 const logger = buildLogger('rate.controller.js')
 
@@ -20,7 +21,7 @@ interface SitData {
 
 
 
-async function newWalk(req: Request, res:Response): Promise<Response> {
+catchAsync(async function newWalk(req: Request, res:Response): Promise<Response> {
 
   const {petName, service, rateType, startDate, endDate, starHour, endHour} = req.body
   
@@ -83,7 +84,7 @@ async function newWalk(req: Request, res:Response): Promise<Response> {
 
 
 
-}
+})
 
 async function newBoarding(req: Request, res:Response) {
   
