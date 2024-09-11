@@ -5,9 +5,13 @@ import Holidays from 'date-holidays';
 
 // Obtiene la configuracion de fechas festivas para España ('ES')y Madrid ('MD')
 const hd = new Holidays('ES', 'MD');
-
-
 const Rate = require ('../models/rates.model')
+
+interface RateTable {
+    date: Date, 
+    rate: string,
+    price: number
+}
 
 
 // Devuelve si una fecha es festivo en Madrid o si es fin de semana. 
@@ -22,20 +26,28 @@ function isHolidayOrWeekend (date: Date): boolean {
 }
 
 
-export async function calculateRateTable(startDate: Date, endDate: Date): Promise<any> {   
+export async function calculateRateTable(startDate: Date, endDate: Date, starHour: string, endHour: string): Promise<RateTable[]> {   
   
     
-    //TODO: Descomentar    
+    const sitPeriod: Date[] = []
     let initialDate = new Date (startDate)
     let finalDate = new Date (endDate)
 
-    const sitPeriod = []    
+    
 
     while (initialDate <= finalDate) {        
         // Se crea nueva estancia de incial Date para crear una copia de la fecha. Si no se modificaria siempre. 
         sitPeriod.push(new Date(initialDate))
         initialDate.setDate(initialDate.getDate() + 1)               
     }
+
+    // Se agrega la hora de recogida y entrega al primer y último regi
+    sitPeriod[0] = new Date (`${startDate}T${starHour}Z`) 
+    sitPeriod[sitPeriod.length-1] = new Date (`${endDate}T${endHour}Z`) 
+
+
+    console.log('sitPeriod >> ', sitPeriod);
+    
 
     //FIXME: 
     // Consulto las tarifas de alojamiento
@@ -48,30 +60,21 @@ export async function calculateRateTable(startDate: Date, endDate: Date): Promis
 
 
     // Recupera las tarifas para dia festivo y laborable. 
-    const HolidayPrice = accomodationFees.find ((fee: { rate: string; }) => fee.rate == 'alojamiento festivo')?.price
-    const weekDayRate = accomodationFees.find ((fee: { rate: string; }) => fee.rate == 'alojamiento laborable')?.price
+    const holidayPrice = parseInt(accomodationFees.find ((fee: { rate: string; }) => fee.rate == 'alojamiento festivo')?.price)
+    const weekDayRate = parseInt(accomodationFees.find ((fee: { rate: string; }) => fee.rate == 'alojamiento laborable')?.price)
+   
+    
+    const ratesTable = sitPeriod.map(date => {
+        const isHoliday = isHolidayOrWeekend(date); 
+        return {
+            date,
+            rate: isHoliday ? 'festivo' : 'laborable',
+            price: isHoliday ? holidayPrice : weekDayRate,
+        };
+    });
 
-    console.log('HolidayPrice > ', HolidayPrice);
-    console.log('weekDayRate > ', weekDayRate);
 
-
-
-    const ratesTable = []
-
-    for (const date of sitPeriod) {
-
-        isHolidayOrWeekend(date)
-
-        if (isHolidayOrWeekend(date)) {        
-            ratesTable.push({date: date, price: HolidayPrice})                        
-        } else {
-            ratesTable.push({date: date, price: weekDayRate})
-        }
-        
-    }
-
-    console.log('ratesTable ', ratesTable);
-    return [ratesTable]
+    return ratesTable
 
     
 }

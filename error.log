@@ -11,3 +11,8 @@
 {"level":"error","message":"error Error al crear el servicio: ValidationError: service: `paseos` is not a valid enum value for path `service`.","service":"rate.controller.js","timestamp":"2024-09-04T14:00:05.359Z"}
 {"level":"error","message":"error Error al crear el servicio: ValidationError: startDate: Path `startDate` is required.","service":"rate.controller.js","timestamp":"2024-09-05T16:11:02.265Z"}
 {"level":"error","message":"error Error al crear el servicio: ValidationError: startDate: Path `startDate` is required.","service":"rate.controller.js","timestamp":"2024-09-05T16:12:48.157Z"}
+{"level":"error","message":"error Error al borrar el servicio: CastError: Cast to ObjectId failed for value \"all\" (type string) at path \"_id\" for model \"Sits\"","service":"rate.controller.js","timestamp":"2024-09-09T13:09:25.192Z"}
+{"level":"error","message":"error Error al borrar el servicio: CastError: Cast to ObjectId failed for value \"all\" (type string) at path \"_id\" for model \"Sits\"","service":"rate.controller.js","timestamp":"2024-09-09T13:10:59.678Z"}
+{"level":"error","message":"error Error al insertar los servicios: TypeError: Sit.inserMany is not a constructor","service":"rate.controller.js","timestamp":"2024-09-09T13:35:35.928Z"}
+{"level":"error","message":"error Error al insertar los servicios: TypeError: Sit.insertMany is not a constructor","service":"rate.controller.js","timestamp":"2024-09-09T13:35:54.341Z"}
+{"level":"error","message":"error Error al insertar los servicios: ValidationError: rateType: Path `rateType` is required.","service":"rate.controller.js","timestamp":"2024-09-09T16:40:31.594Z"}

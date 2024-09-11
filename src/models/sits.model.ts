@@ -4,13 +4,17 @@ const Schema = mongoose.Schema;
 const sitsSchema = new Schema(
     {
         startDate: 
-        {   type: Date, 
-            required: true,                         
+        {   type: Date
+            
         },
 
         endDate: 
-        {   type: Date, 
-            required: true,                         
+        {   type: Date
+            
+        },
+
+        serviceDate: {
+            type: Date
         },
 
 
